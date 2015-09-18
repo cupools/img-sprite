@@ -1,0 +1,15 @@
+{
+  "name": "img-sprite",
+  "version": "1.0.0",
+  "description": "images sprites",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "liyh",
+  "license": "MIT",
+  "dependencies": {
+    "css": "^2.2.1",
+    "spritesmith": "^1.4.0"
+  }
+}

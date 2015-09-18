@@ -1,0 +1,12 @@
+body {
+	color: #ccc;
+}
+h1 {
+	font-style: 14px;
+	color: #ccc;
+	background: url(./1.png);
+}
+h2 {
+	font-style: 12px;
+	background: url(./2.png);
+}
