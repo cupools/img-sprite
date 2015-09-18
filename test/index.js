@@ -20,13 +20,19 @@ var spritesmith = require('spritesmith'),
 
 
 // console.log(obj);
+var options = {
+	src: 'style.css',
+	dest: 'dest.css',
+	retina: true,
+	padding: 10
+}
 
 
-fs.readFile('style.css', 'utf8', function(err, file) {
+fs.readFile(options.src, 'utf8', function(err, file) {
 	var ast = cssparse.parse(file);
 
 	// 遍历节点
-	var cache = [], sprites = [], bgColors = [], i, l;
+	var cache = [];
 	traverse(ast, {
 		enter: function(node, parent) {
 			if(node.property && node.property.indexOf('background') > -1) {
@@ -40,43 +46,79 @@ fs.readFile('style.css', 'utf8', function(err, file) {
 		}
 	});
 
-	// 提取 url
-	var urlReg = /(?:url\(['"]?([\w\W]+?)['"]?\))/,
-		colorReg = /#(\w{3,6})/;
+	// 提取 url，分组1为url，分组2为精灵图标记，分组三为精灵图名称
+	var urlReg = /(?:url\(['"]?([\w\W]+?)(?:\?(__)?([\w\W]+?))?['"]?\))/,
+		sprites = {}, spritesUrl = {}, u, tag, i, l;
 
+	// 过滤获取的节点
 	for(i=0; i<cache.length; i++) {
-		var u = urlReg.exec(cache[i].node.value),
-			c = colorReg.exec(cache[i].node.value);
+		u = urlReg.exec(cache[i].node.value);
+		tag = null;
 
 		if(u) {
-			sprites.push(path.join(__dirname, u[1]));
-			bgColors.push(c ? c[1] : '');
+			if(u[2]) {
+				tag = u[3];
+				if(!sprites[tag]) {
+					sprites[tag] = [];
+				}
+				if(!spritesUrl[tag]) {
+					spritesUrl[tag] = [];
+				}
+
+				sprites[tag].push(cache[i]);
+				spritesUrl[tag].push(path.join(__dirname, u[1]));
+			} else {
+				cache.splice(i--, 1);
+			}
 		}
 	}
 
-	spritesmith({
-		src: sprites,
-		padding: 10
-	}, function handleResult(err, result) {
-		fs.writeFileSync(__dirname + '/alt-diagonal.png', result.image, 'binary');
-		var coordinates = result.coordinates,
-			properties = result.properties;
+	function buildSprite(tag, src) {
+		spritesmith({
+			src: src,
+			padding: options.padding
+		}, function handleResult(err, result) {
+			var spriteSet = sprites[tag],
+				spriteUrl = spritesUrl[tag],
+				coordinates = result.coordinates,
+				properties = result.properties,
+				pow = options.retina ? 2 : 1,
+				colorReg = /#\w{3,6}|rgba?\(.+?\)/,
+				ceil = Math.ceil,
+				color, i;
 
-		for(var i=0; i<cache.length; i++) {
-			cache[i].node.value = 'url(\'alt-diagonal.png\')';
-			cache[i].parent.push({
-				type: 'declaration',
-				property: 'background-size',
-				value: properties.width + 'px ' + properties.height + 'px'
-			}, {
-				type: 'declaration',
-				property: 'background-position',
-				value: coordinates[sprites[i]].x + 'px ' + coordinates[sprites[i]].y + 'px'
+			console.log(spriteSet)
+			for(i=0; i<spriteSet.length; i++) {
+				color = colorReg.exec(spriteSet[i].node.value);
+				color = color ? color[0] + ' ' : '';
+				spriteSet[i].node.value = color + 'url(' + tag + '.png) ' + ceil(coordinates[spriteUrl[i]].x / pow) + 'px ' + ceil(coordinates[spriteUrl[i]].y / pow) + 'px';
+				spriteSet[i].parent.push({
+					type: 'declaration',
+					property: 'background-size',
+					value: ceil(properties.width / pow) + 'px ' + ceil(properties.height / pow) + 'px'
+				});
+			}
+
+			fs.writeFile(path.join(__dirname, tag + '.png'), result.image, 'binary');
+
+			// @TODO 添加多任务管理，只创建一次 css
+			fs.writeFile(path.join(__dirname, options.dest), cssparse.stringify(ast), function(err){
+				if(err) {
+					throw err;
+				}
 			});
-		}
-		console.timeEnd('t')
 
-		console.log(cssparse.stringify(ast));
-	});
+			if(++TNT === spriteUrl.length) {
+
+			console.timeEnd('t');
+			}
+
+		});
+	}
+
+	var TNT = 0;
+	for(i in spritesUrl) {
+		buildSprite(i, spritesUrl[i]);
+	}
 
 });

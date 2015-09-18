@@ -1,12 +1,23 @@
-body {
-	color: #ccc;
-}
 h1 {
-	font-style: 14px;
-	color: #ccc;
-	background: url(./1.png);
+  background: rgba(0,0,0,0) url(./1.png?__sprite);
 }
 h2 {
-	font-style: 12px;
-	background: url(./2.png);
+  color: #fff;
+  background: url('./4.png?__sprite') #66ccff;
+}
+h3::after {
+  color: #fff;
+  background: url(./3.png?__sprite) rgb(0,0,0) no-repeat;
+}
+h3 {
+  color: #fff;
+  background: url(./6.png?__add) rgb(0,0,0) no-repeat;
+}
+h3::after {
+  color: #fff;
+  background: url(./2.png?__add) rgb(0,0,0) no-repeat;
+}
+h4 {
+  color: #fff;
+  font-size: 12px;
 }

@@ -33,7 +33,10 @@ fn.walker = function(node) {
  * 检查对象，并触发回调函数，同时提供 parent 和 node 参数
  */
 fn.check = function(node, parent, key) {
+	var ret;
 	parent = parent || null;
+
+	// 调用 enter
 	if (this.enterFn(node, parent)) {
 		this.walker(node);
 	}
@@ -47,7 +50,7 @@ fn.check = function(node, parent, key) {
 fn.enterFn = function(node, parent) {
 	var ret = this.sign.next;
 	if (typeof this.enter === 'function') {
-		ret = this.enter.call(this, node, parent);
+		ret = this.enter.call(this, node, parent) || ret;
 	}
 	return ret;
 };
@@ -61,14 +64,6 @@ fn.leaveFn = function(node, parent) {
 		ret = this.leave(node, parent);
 	}
 	return ret;
-};
-
-/**
- * 函数代理
- */
-fn.bind = function(fn) {
-	var args = Array.prototype.slice.call(arguments, 1);
-	return fn.apply(this, args);
 };
 
 function isArray(obj) {
