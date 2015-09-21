@@ -8,7 +8,7 @@ div {
   height: 128px;
   color: #ccc;
   background: url(../images/sprite-sprite.png) 0px 0px;
-  background-size: 261px 177px;
+  background-size: 522px 353px;
 }
 
 .icon2 {
@@ -16,35 +16,35 @@ div {
   height: 128px;
   color: #ccc;
   background: url(../images/sprite-add.png) 0px 0px;
-  background-size: 257px 128px;
+  background-size: 514px 256px;
 }
 
 .icon3 {
   width: 128px;
   height: 128px;
-  background: url(../images/sprite-sprite.png) -133px 0px;
-  background-size: 261px 177px;
+  background: url(../images/sprite-sprite.png) -266px 0px;
+  background-size: 522px 353px;
 }
 
 .icon4 {
   width: 124px;
   height: 44px;
-  background: url(../images/sprite-sprite.png) 0px -133px;
-  background-size: 261px 177px;
+  background: url(../images/sprite-sprite.png) 0px -266px;
+  background-size: 522px 353px;
 }
 
 .icon5 {
   width: 124px;
   height: 44px;
-  background: url(../images/sprite-add.png) -133px 0px;
-  background-size: 257px 128px;
+  background: url(../images/sprite-add.png) -266px 0px;
+  background-size: 514px 256px;
 }
 
 .icon6 {
   width: 17px;
   height: 12px;
-  background: url(../images/sprite-sprite.png) -129px -133px;
-  background-size: 261px 177px;
+  background: url(../images/sprite-sprite.png) -258px -266px;
+  background-size: 522px 353px;
 }
 
 /* Template-specific stuff
