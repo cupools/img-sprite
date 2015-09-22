@@ -1,0 +1,12 @@
+div {
+  margin: 10px;
+  border: 1px solid #ccc;
+}
+
+.icon7 {
+  width: 64px;
+  height: 42px;
+  color: #ccc;
+  background: url(../images/sprite-addi.png) 0px 0px;
+  background-size: 64px 42px;
+}
