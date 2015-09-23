@@ -1,5 +1,5 @@
 // #!/usr/bin/env node
-
+'use strict';
 var argv = require('yargs')
     .option('s', {
         alias: 'src',
@@ -64,7 +64,7 @@ var sprite = require('../lib/sprite'),
 
 var options = {
     src: ['test/dest/css/origin.css', 'test/dest/css/two.css'],
-    dest: 'test/dest/css/a',
+    dest: 'test/dest/css',
     destImg: 'test/dest/images/',
     imgPath: '../images/',
     prevTag: 'sprite-',
@@ -80,9 +80,19 @@ options.src = options.src.map(function(item) {
     return path.join(process.cwd(), item);
 });
 
-options.dest = path.join(process.cwd(), options.dest);
-options.destImg = path.join(process.cwd(), options.destImg);
+options.dest = path.join(process.cwd(), options.dest.replace(/\/[^\/]*?$/, function(str) {
+    if(str.indexOf('.') > -1 && options.src.length > 1) {
+        return '/';
 
+    } else if(str === '/' || str.indexOf('.') > -1) {
+        return str;
+
+    } else {
+        return str + '/';
+    }
+}));
+
+options.destImg = path.join(process.cwd(), options.destImg);
 
 sprite.build(options);
 

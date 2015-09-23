@@ -7,6 +7,6 @@ div {
   width: 64px;
   height: 42px;
   color: #ccc;
-  background: url(../images/7.png?__addi) no-repeat;
+  background: url(../images/7.png?__addi) 0px 0px;
   background-size: 64px 42px;
 }
