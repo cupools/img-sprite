@@ -76,11 +76,7 @@ var options = {
 extend(options, args);
 
 // 修正路径
-options.src = options.src.map(function(item) {
-    return path.join(process.cwd(), item);
-});
-
-options.dest = path.join(process.cwd(), options.dest.replace(/\/[^\/]*?$/, function(str) {
+options.dest = options.dest.replace(/\/[^\/]*?$/, function(str) {
     if(str.indexOf('.') > -1 && options.src.length > 1) {
         return '/';
 
@@ -90,9 +86,7 @@ options.dest = path.join(process.cwd(), options.dest.replace(/\/[^\/]*?$/, funct
     } else {
         return str + '/';
     }
-}));
-
-options.destImg = path.join(process.cwd(), options.destImg);
+});
 
 sprite.build(options);
 

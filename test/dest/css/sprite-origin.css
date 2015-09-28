@@ -7,7 +7,7 @@ div {
   width: 128px;
   height: 128px;
   color: #ccc;
-  background: url(../images/sprite-sprite.png) 0px 0px;
+  background: url(../images/sprite-sprite@2x.png) 0px 0px;
   background-size: 261px 177px;
 }
 
@@ -15,35 +15,35 @@ div {
   width: 128px;
   height: 128px;
   color: #ccc;
-  background: url(../images/sprite-add.png) 0px 0px;
+  background: url(../images/sprite-add@2x.png) 0px 0px;
   background-size: 257px 128px;
 }
 
 .icon3 {
   width: 128px;
   height: 128px;
-  background: url(../images/sprite-sprite.png) -133px 0px;
+  background: url(../images/sprite-sprite@2x.png) -133px 0px;
   background-size: 261px 177px;
 }
 
 .icon4 {
   width: 124px;
   height: 44px;
-  background: url(../images/sprite-sprite.png) 0px -133px;
+  background: url(../images/sprite-sprite@2x.png) 0px -133px;
   background-size: 261px 177px;
 }
 
 .icon5 {
   width: 124px;
   height: 44px;
-  background: url(../images/sprite-add.png) -133px 0px;
+  background: url(../images/sprite-add@2x.png) -133px 0px;
   background-size: 257px 128px;
 }
 
 .icon6 {
   width: 17px;
   height: 12px;
-  background: url(../images/sprite-sprite.png) -129px -133px;
+  background: url(../images/sprite-sprite@2x.png) -198px -133px;
   background-size: 261px 177px;
 }
 
@@ -485,4 +485,36 @@ body,
   background: #fff;
   box-shadow: 0 0 2px 0 rgba(0,0,0,.2);
   border-radius: 2px;
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width:1024px) and (orientation : landscape)and (-webkit-min-device-pixel-ratio: 2) {
+  .icon1 {
+    background: url(../images/sprite-sprite@1x.png) 0px 0px;
+    background-size: 261px 177px;
+  }
+
+  .icon2 {
+    background: url(../images/sprite-add@1x.png) 0px 0px;
+    background-size: 257px 128px;
+  }
+
+  .icon3 {
+    background: url(../images/sprite-sprite@1x.png) -133px 0px;
+    background-size: 261px 177px;
+  }
+
+  .icon4 {
+    background: url(../images/sprite-sprite@1x.png) 0px -133px;
+    background-size: 261px 177px;
+  }
+
+  .icon5 {
+    background: url(../images/sprite-add@1x.png) -133px 0px;
+    background-size: 257px 128px;
+  }
+
+  .icon6 {
+    background: url(../images/sprite-sprite@1x.png) -198px -133px;
+    background-size: 261px 177px;
+  }
 }
