@@ -1,4 +1,5 @@
-// #!/usr/bin/env node
+#!/usr/bin/env node
+
 'use strict';
 var argv = require('yargs')
     .option('s', {
@@ -14,9 +15,9 @@ var argv = require('yargs')
         type: 'string'
     })
     .option('o', {
-        alias: 'destImg',
+        alias: 'output',
         demand: false,
-        describe: 'output image path',
+        describe: 'output images\' path',
         type: 'string'
     })
     .option('r', {
@@ -31,14 +32,14 @@ var argv = require('yargs')
         describe: 'padding between images, default to 10',
         type: 'string'
     })
-    .option('prevTag', {
+    .option('prefix', {
         demand: false,
         describe: 'add before images\' filename, default to "sprite-"',
         type: 'string'
     })
     .option('imgPath', {
         demand: false,
-        describe: 'images path, default to "../images/"',
+        describe: 'images\' path, default to "../images/"',
         type: 'string'
     })
     .option('algorithm', {
@@ -53,7 +54,7 @@ var args = {
     dest: argv.d,
     destImg: argv.o,
     imgPath: argv.imgPath,
-    prevTag: argv.prevTag,
+    prefix: argv.prefix,
     retina: argv.retina,
     algorithm: argv.algorithm,
     padding: argv.padding
@@ -67,7 +68,7 @@ var options = {
     dest: 'test/dest/css',
     destImg: 'test/dest/images/',
     imgPath: '../images/',
-    prevTag: 'sprite-',
+    prefix: 'sprite-',
     retina: true,
     algorithm: 'binary-tree',
     padding: 10
@@ -75,7 +76,7 @@ var options = {
 
 extend(options, args);
 
-// 修正路径
+// 修正 css 产出路径
 options.dest = options.dest.replace(/\/[^\/]*?$/, function(str) {
     if(str.indexOf('.') > -1 && options.src.length > 1) {
         return '/';

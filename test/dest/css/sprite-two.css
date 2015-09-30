@@ -1,0 +1,24 @@
+div {
+  margin: 10px;
+  border: 1px solid #ccc;
+}
+
+.icon7 {
+  width: 64px;
+  height: 42px;
+  color: #ccc;
+  background: url(../images/sprite-sprite.png) -129px -133px;
+  background-size: 261px 177px;
+}
+
+.icon {
+  display: inline-block;
+  zoom: 1;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5) {
+  .icon7 {
+    background: url(../images/sprite-sprite@2x.png) -129px -133px;
+    background-size: 261px 177px;
+  }
+}
