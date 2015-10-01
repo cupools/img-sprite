@@ -4,7 +4,7 @@
   "description": "images sprites",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "bin/sprite -s test/css/one.css -d test/css/dest.css -o test/images"
   },
   "author": "liyh",
   "license": "MIT",

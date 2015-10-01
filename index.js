@@ -17,7 +17,7 @@ function init(args) {
     extend(options, args);
 
     // 修正 css 产出路径
-    options.src = options.src.slice(0);
+    options.src = typeof options.src === 'string' ? options.src.split(',') : options.src;
     options.dest = options.dest.replace(/\/[^\/]*?$/, function(str) {
         if (str.indexOf('.') > -1 && options.src.length > 1) {
             return '/';
