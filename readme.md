@@ -22,9 +22,9 @@ sprite({
 	output: 'test/images'
 });
 ```
-![css 文件](/images/img-sprite/00.png)
+![css 文件](https://github.com/cupools/img-sprite/blob/master/docs/00.png)
 
-![精灵图](/images/img-sprite/01.png)
+![精灵图](https://github.com/cupools/img-sprite/blob/master/docs/01.png)
 
 ### 处理多个 css 文件
 

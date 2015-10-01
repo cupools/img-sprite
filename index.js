@@ -11,7 +11,7 @@ function init(args) {
         retina: true,
         algorithm: 'binary-tree',
         padding: 10,
-        media： 'only screen and (-webkit-min-device-pixel-ratio: 1.5)'
+        media: 'only screen and (-webkit-min-device-pixel-ratio: 1.5)'
     };
 
     extend(options, args);
