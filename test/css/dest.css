@@ -1,0 +1,104 @@
+div {
+  margin: 10px;
+  border: 1px solid #ccc;
+}
+
+.icon0 {
+  width: 128px;
+  height: 128px;
+  background: url(../images/sprite-tom.png) 0px 0px no-repeat;
+  background-size: 316px 261px;
+}
+
+.icon1 {
+  width: 128px;
+  height: 128px;
+  color: #ccc;
+  background: url(../images/sprite-tom.png) -133px 0px no-repeat;
+  background-size: 316px 261px;
+}
+
+.icon2 {
+  width: 50px;
+  height: 50px;
+  color: #ccc;
+  background: url(../images/sprite-tom.png) -266px 0px no-repeat;
+  background-size: 316px 261px;
+}
+
+.icon3 {
+  width: 128px;
+  height: 128px;
+  background: url(../images/sprite-tom.png) 0px -133px no-repeat;
+  background-size: 316px 261px;
+}
+
+.icon4 {
+  width: 128px;
+  height: 128px;
+  background: url(../images/sprite-tom.png) -133px -133px no-repeat;
+  background-size: 316px 261px;
+}
+
+.icon5 {
+  width: 200px;
+  height: 75px;
+  background: url(../images/sprite-jerry.png) 0px 0px no-repeat;
+  background-size: 200px 230px;
+}
+
+.icon6 {
+  width: 75px;
+  height: 150px;
+  background: url(../images/sprite-jerry.png) 0px -80px no-repeat;
+  background-size: 200px 230px;
+}
+
+.icon7 {
+  width: 100px;
+  height: 100px;
+  background: url(../images/sprite-jerry.png) -80px -80px no-repeat;
+  background-size: 200px 230px;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5) {
+  .icon0 {
+    background: url(../images/sprite-tom@2x.png) 0px 0px no-repeat;
+    background-size: 316px 261px;
+  }
+
+  .icon1 {
+    background: url(../images/sprite-tom@2x.png) -133px 0px no-repeat;
+    background-size: 316px 261px;
+  }
+
+  .icon2 {
+    background: url(../images/sprite-tom@2x.png) -266px 0px no-repeat;
+    background-size: 316px 261px;
+  }
+
+  .icon3 {
+    background: url(../images/sprite-tom@2x.png) 0px -133px no-repeat;
+    background-size: 316px 261px;
+  }
+
+  .icon4 {
+    background: url(../images/sprite-tom@2x.png) -133px -133px no-repeat;
+    background-size: 316px 261px;
+  }
+
+  .icon5 {
+    background: url(../images/sprite-jerry@2x.png) 0px 0px no-repeat;
+    background-size: 200px 230px;
+  }
+
+  .icon6 {
+    background: url(../images/sprite-jerry@2x.png) 0px -80px no-repeat;
+    background-size: 200px 230px;
+  }
+
+  .icon7 {
+    background: url(../images/sprite-jerry@2x.png) -80px -80px no-repeat;
+    background-size: 200px 230px;
+  }
+}

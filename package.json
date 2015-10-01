@@ -15,7 +15,17 @@
     "spritesmith": "^1.4.0",
     "yargs": "^3.25.0"
   },
-  "devDependencies": {
-    "mocha": "^2.3.2"
-  }
+  "devDependencies": {},
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cupools/img-sprite"
+  },
+  "bugs": {
+    "url": "https://github.com/cupools/img-sprite/issues"
+  },
+  "homepage": "https://github.com/cupools/img-sprite"
 }
