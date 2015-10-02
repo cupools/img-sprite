@@ -17,7 +17,7 @@
 var sprite = require('img-sprite');
 
 sprite({
-	src: ['test/css/one.css'],
+	src: 'test/css/one.css',
 	dest: 'test/css/dest.css',
 	output: 'test/images'
 });
@@ -76,7 +76,7 @@ img-sprite 基于 [spritesmith](https://github.com/Ensighten/spritesmith) 和 [c
 
 #### 1. 像 FIS 一般，直接从 css 文件中通过标记提取图片路径处理并产出精灵图和新的 css 文件
 
-通过 css-parse 构建出 css 文件对应的 AST（抽象语法树），递归遍历 AST 根据标识得到需要被合并的图片的路径，之后交给 spritemith 处理产出精灵图，再根据 spritemith 返回的 map 将精灵图的路径、图片大小、图片位置调整 AST，产出新的 css 文件即可
+通过 css-parse 构建出 css 文件对应的 AST（抽象语法树），递归遍历 AST 根据标识得到需要被合并的图片的路径，之后交给 spritemith 处理产出精灵图，再根据 spritemith 返回的 map 将精灵图的路径、图片大小、图片位置调整到 AST，产出新的 css 文件即可
 
 #### 2. 能够根据标识产出多个精灵图
 通过 `icon.png?__xxx` 标记图片，通过 `xxx` 决定图片应该被合并到哪一个精灵图
@@ -97,7 +97,7 @@ var urlReg = /(?:url\(['"]?([\w\W]+?)(?:\?(__)?([\w\W]+?))?['"]?\))/,
 还没做这一块，目前的设想是通过 `icon.png?__inline` 标记
 
 #### 6. 使用要简单，简单，简单
-配置比较简单，需要目标 css 路径（src），产出 css 路径（dest），精灵图产出路径（output）三个参数。如果 src 是数组，那么 dest 指定路径并产出多个 css 文件；如果 src 是一个文件，那么 dest 可以指定产出 css 的路径和文件名。依赖 GM 应该是最麻烦的地方吧，还好 windows 下的安装不麻烦
+配置比较简单，需要目标 css 路径（src），产出 css 路径（dest），精灵图产出路径（output）三个参数。如果 src 有多个文件，那么 dest 指定路径并产出多个 css 文件；如果 src 只有一个文件，那么 dest 可以指定产出 css 的路径和文件名。依赖 GM 应该是最麻烦的地方吧，还好 windows 下的安装不麻烦。可以配合 CSS 预处理器更方便地写样式
 
 ## 其他问题
 1. 没有 GM 以外的选择吗  

@@ -1,6 +1,6 @@
 {
   "name": "img-sprite",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "images sprites",
   "main": "index.js",
   "scripts": {
@@ -27,5 +27,10 @@
   "bugs": {
     "url": "https://github.com/cupools/img-sprite/issues"
   },
-  "homepage": "https://github.com/cupools/img-sprite"
+  "homepage": "https://github.com/cupools/img-sprite",
+  "keywords": [
+    "sprite",
+    "image",
+    "css"
+  ]
 }
