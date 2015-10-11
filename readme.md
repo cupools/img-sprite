@@ -5,12 +5,17 @@
 1. 能够根据标识产出多个精灵图
 1. 不依赖 Less 等 CSS 预处理器
 1. 兼容 Retina
-1. Base64 内联图片（todo）
+1. Base64 内联图片
 1. 使用要简单，简单，简单
 
 <!-- more -->
 
 ## 使用
+### 安装
+``` bash
+npm install img-sprite --save
+```
+
 ### 处理一个 css 文件
 
 ``` javascript
@@ -22,6 +27,7 @@ sprite({
 	output: 'test/images'
 });
 ```
+
 ![css 文件](https://github.com/cupools/img-sprite/blob/master/docs/00.png)
 
 ![精灵图](https://github.com/cupools/img-sprite/blob/master/docs/01.png)
@@ -37,8 +43,9 @@ sprite({
 	output: 'test/images',
 	retina: false,
 	prefix: 'sp-',
-	imgPath: '/public/images/'
-	algorithm: 'top-down'
+	imgPath: '/public/images/',
+	algorithm: 'top-down',
+	sizeLimit: 10*1024
 });
 ```
 ### 命令行使用
@@ -53,23 +60,60 @@ Options:
   --prefix      add before images filename, default to "sprite-"        [string]
   --imgPath     images path, default to "../images/"                    [string]
   --algorithm   list algorithm, default to "binary-tree"                [string]
+  --sizeLimit   size limit for inline images, default to 5000           [string]
 ```
 
 ## 参数
-|参数|说明|默认|
-|---|---|---|
-|src|css 文件路径，必须 {Array}|无|
-|dest|css 产出路径，当仅处理一个 css 文件时可指定文件名 {String}|当前目录|
-|output|精灵图产出路径 {String}|当前目录|
-|retina|是否产出 @2x 图片 {Boolean}|true|
-|padding|精灵图中图片间距 {Number}|10|
-|prefix|精灵图前缀；当产出 css 文件与指定 css 的目录一致时，为 css 文件添加该前缀 {String}|'sprite-'|
-|imgPath|css 文件中的图片路径 {String}|'../images/'|
-|algorithm|图片排序算法 [top-down, left-right, diagonal, alt-diagonal, binary-tree]|'binary-tree'|
-|media|媒体查询条件|only screen and (-webkit-min-device-pixel-ratio: 1.5)|
+### src
+- 类型：Array
+- 说明：css 文件路径，必须
+- 默认：无
 
+### dest
+- 类型：String
+- 说明：css 产出路径，当仅处理一个 css 文件时可指定文件名
+- 默认：当前目录
 
+### output
+- 类型：String
+- 说明：精灵图产出路径
+- 默认：当前目录
 
+### retina
+- 类型：Boolean
+- 说明：是否产出 @2x 图片
+- 默认：true
+
+### padding
+- 类型：Number
+- 说明：精灵图中图片间距
+- 默认：10
+
+### prefix
+- 类型：String
+- 说明：精灵图前缀；当产出 css 文件与指定 css 的目录一致时，为 css 文件添加该前缀
+- 默认：'sprite-'
+
+### imgPath
+- 类型：String
+- 说明：css 文件中的图片路径
+- 默认：'../images/'
+
+### algorithm
+- 类型：String
+- 说明：图片排序算法
+- 可选：top-down, left-right, diagonal, alt-diagonal, binary-tree
+- 默认：'binary-tree'
+
+### media
+- 类型：String
+- 说明：媒体查询条件
+- 默认：only screen and (-webkit-min-device-pixel-ratio: 1.5)
+
+### sizeLimit
+- 类型：Number
+- 说明：内联图片大小限制
+- 默认：5000
 
 ## 实现
 img-sprite 基于 [spritesmith](https://github.com/Ensighten/spritesmith) 和 [css](https://github.com/reworkcss/css) 实现。spritesmith 解决了图片合并、坐标计算这几个关键的问题，css 解决了图片路径替换、样式补充的问题。然后我做得东西就比较简单了。根据几个需求点简单列举一下
@@ -88,13 +132,13 @@ var urlReg = /(?:url\(['"]?([\w\W]+?)(?:\?(__)?([\w\W]+?))?['"]?\))/,
 ```
 
 #### 3. 不依赖 Less 等 CSS 预处理器
-跟平时一样写代码，在完成之后一次构建处理即可
+跟平时一样写代码，在完成之后一次构建处理即可。当然平时用预处理器更方便了
 
 #### 4. 兼容 Retina
 之前尝试过其他自动雪碧图工具，比较不舒服的一个地方是对 Retina 的兼容。img-sprite 对 Retina 的处理是产出两套精灵图，并在 css 文件底部插入 media。默认以 @2x 的切图合并精灵图，然后依赖 [GM](http://www.graphicsmagick.org/) 缩小图片产出 @1x 的精灵图。
 
-#### 5. Base64 内联图片（todo）
-还没做这一块，目前的设想是通过 `icon.png?__inline` 标记
+#### 5. Base64 内联图片
+通过 `icon.png?__inline` 标记即可
 
 #### 6. 使用要简单，简单，简单
 配置比较简单，需要目标 css 路径（src），产出 css 路径（dest），精灵图产出路径（output）三个参数。如果 src 有多个文件，那么 dest 指定路径并产出多个 css 文件；如果 src 只有一个文件，那么 dest 可以指定产出 css 的路径和文件名。依赖 GM 应该是最麻烦的地方吧，还好 windows 下的安装不麻烦。可以配合 CSS 预处理器更方便地写样式
@@ -102,7 +146,7 @@ var urlReg = /(?:url\(['"]?([\w\W]+?)(?:\?(__)?([\w\W]+?))?['"]?\))/,
 ## 其他问题
 1. 没有 GM 以外的选择吗  
     尝试了 node Jimp，缩小图片效果不理想。暂时不支持在 img-sprite 中配置其他的位图引擎
-    
+
 1. 对其他样式的影响  
     调整 AST 的过程中会将做这样的处理，删除 background 有关的样式并插入新的值。保留背景颜色，不支持同时定义多个背景图片
     
@@ -119,4 +163,14 @@ var urlReg = /(?:url\(['"]?([\w\W]+?)(?:\?(__)?([\w\W]+?))?['"]?\))/,
         property: 'background-size',
         value: ceil(properties.width / pow) + 'px ' + ceil(properties.height / pow) + 'px'
         });
-    ```
+    ``` 
+
+## 更新日志
+- 0.2.0：
+	- 支持通过`?__inline`内联图片
+	- 使用 [fs-extra](https://github.com/jprichardson/node-fs-extra) 操作文件，支持创建多层目录
+	- 添加对不存在的图片路径的过滤
+	- 允许重写 log 方法
+	- 尝试添加单元测试用例
+- 0.1.2：修复非 retina 情况下图片命名 @2x 的情况
+- 0.1.0：基本功能

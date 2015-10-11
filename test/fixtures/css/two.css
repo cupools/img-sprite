@@ -1,0 +1,24 @@
+.icon3 {
+  width: 256px;
+  height: 256px;
+  background: url(../images/3.png?__tom) no-repeat;
+  background-size: 256px 256px;
+}
+.icon4 {
+  width: 256px;
+  height: 256px;
+  background: url(../images/4.png?__tom) no-repeat;
+  background-size: 256px 256px;
+}
+.icon5 {
+  width: 400px;
+  height: 150px;
+  background: url(../images/5.png?__jerry) no-repeat;
+  background-size: 400px 150px;
+}
+.icon6 {
+  width: 150px;
+  height: 300px;
+  background: url(../images/6.png?__jerry) no-repeat;
+  background-size: 150px 300px;
+}

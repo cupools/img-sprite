@@ -1,6 +1,6 @@
 {
   "name": "img-sprite",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "images sprites",
   "main": "index.js",
   "scripts": {
@@ -11,11 +11,14 @@
   "dependencies": {
     "css": "^2.2.1",
     "eventproxy": "^0.3.4",
+    "fs-extra": "^0.24.0",
     "gm": "^1.20.0",
     "spritesmith": "^1.4.0",
     "yargs": "^3.25.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "^2.3.3"
+  },
   "directories": {
     "doc": "docs",
     "test": "test"

@@ -1,0 +1,27 @@
+.icon3 {
+  width: 256px;
+  height: 256px;
+  background: url(./sprite-tom.png) 0px -266px no-repeat;
+  background-size: 632px 522px;
+}
+
+.icon4 {
+  width: 256px;
+  height: 256px;
+  background: url(./sprite-tom.png) -266px -266px no-repeat;
+  background-size: 632px 522px;
+}
+
+.icon5 {
+  width: 400px;
+  height: 150px;
+  background: url(./sprite-jerry.png) 0px 0px no-repeat;
+  background-size: 400px 460px;
+}
+
+.icon6 {
+  width: 150px;
+  height: 300px;
+  background: url(./sprite-jerry.png) 0px -160px no-repeat;
+  background-size: 400px 460px;
+}

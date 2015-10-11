@@ -47,6 +47,11 @@ var argv = require('yargs')
         describe: 'list algorithm, default to "binary-tree"',
         type: 'string'
     })
+    .option('sizeLimit', {
+        demand: false,
+        describe: 'size limit for inline images, default to 5000',
+        type: 'string'
+    })
     .argv;
 
 var args = {
@@ -57,7 +62,8 @@ var args = {
     prefix: argv.prefix,
     retina: argv.retina,
     algorithm: argv.algorithm,
-    padding: argv.padding
+    padding: argv.padding,
+    sizeLimit: argv.sizeLimit
 }
 
 require('../index')(args);
