@@ -1,12 +1,12 @@
 {
   "name": "img-sprite",
-  "version": "0.2.0",
-  "description": "images sprites",
+  "version": "0.2.1",
+  "description": "auto image sprite",
   "main": "index.js",
   "scripts": {
-    "test": "bin/sprite -s test/css/one.css -d test/css/dest.css -o test/images"
+    "test": "mocha test/img_sprite_test"
   },
-  "author": "liyh",
+  "author": "liyh <cupools@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "css": "^2.2.1",

@@ -1,11 +1,11 @@
 ## 需求
 针对之前页面重构的方式，我对于一个精灵图处理工具的设想是这样的：
 
-1. 像 FIS 一般，通过在 css 文件中背景图片添加标识，直接产出精灵图和新的 css 文件（不要问我为什么不用 FIS...）
+1. 像 FIS 一般，通过在 css 文件中背景图片添加标识合并精灵图。**跟平时一样写 css，仅在打包阶段产出精灵图和新的 css 文件**
 1. 能够根据标识产出多个精灵图
 1. 不依赖 Less 等 CSS 预处理器
-1. 兼容 Retina
-1. Base64 内联图片
+1. 兼容 Retina，并自动插入媒体查询代码
+1. Base64 内联图片，通过 `?__inline` 标识
 1. 使用要简单，简单，简单
 
 <!-- more -->
@@ -17,15 +17,40 @@ npm install img-sprite --save
 ```
 
 ### 处理一个 css 文件
-
+#### main.js
 ``` javascript
 var sprite = require('img-sprite');
 
 sprite({
-	src: 'test/css/one.css',
+	src: 'test/css/main.css',
 	dest: 'test/css/dest.css',
 	output: 'test/images'
 });
+```
+#### main.css
+
+``` css
+.icon0 {
+  width: 128px;
+  height: 128px;
+  background: url(../images/0.png?__tom) no-repeat;
+  background-size: 128px 128px;
+}
+.icon1 {
+  width: 128px;
+  height: 128px;
+  color: #ccc;
+  background: url(../images/1.png?__tom) no-repeat;
+  background-size: 128px 128px;
+}
+.icon2 {
+  width: 50px;
+  height: 50px;
+  color: #ccc;
+  background: url(../images/2.png?__inline) no-repeat;
+  background-size: 50px 50px;
+}
+
 ```
 
 ![css 文件](https://github.com/cupools/img-sprite/blob/master/docs/00.png)
@@ -145,7 +170,7 @@ var urlReg = /(?:url\(['"]?([\w\W]+?)(?:\?(__)?([\w\W]+?))?['"]?\))/,
 
 ## 其他问题
 1. 没有 GM 以外的选择吗  
-    尝试了 node Jimp，缩小图片效果不理想。暂时不支持在 img-sprite 中配置其他的位图引擎
+    尝试了 node Jimp，缩小图片效果不理想。暂时不支持在 img-sprite 中配置其他的位图引擎。折腾 GM 可以戳[这里](http://cupools.github.io/2015/09/29/notes/%E5%AE%89%E8%A3%85%20GraphicsMagick%E8%BF%99%E4%B8%AA%E5%A4%A7%E5%9D%91/)
 
 1. 对其他样式的影响  
     调整 AST 的过程中会将做这样的处理，删除 background 有关的样式并插入新的值。保留背景颜色，不支持同时定义多个背景图片
@@ -164,6 +189,13 @@ var urlReg = /(?:url\(['"]?([\w\W]+?)(?:\?(__)?([\w\W]+?))?['"]?\))/,
         value: ceil(properties.width / pow) + 'px ' + ceil(properties.height / pow) + 'px'
         });
     ``` 
+
+1. 缺点  
+	- 目前仅支持处理 .png
+	- 写样式的时候建议元素的宽高和背景图的宽高一致，其他情况下精灵图不方便处理。有什么好的建议请务必提 [issue](https://github.com/cupools/img-sprite/issues)
+	- 不支持背景图 repeat
+	- 暂不支持多个背景图
+	- 目前仅支持处理 .css
 
 ## 更新日志
 - 0.2.0：

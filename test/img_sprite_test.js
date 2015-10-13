@@ -3,8 +3,8 @@
 var assert = require('assert'),
     fs = require('fs-extra');
 
-var Sprite = require('../index');
-Sprite.extend.log = function() {};
+var sprite = require('../index');
+sprite.extend.log = function() {};
 
 before(function() {
     fs.emptyDirSync('test/tmp');
@@ -14,7 +14,7 @@ before(function() {
 
 describe('output css and image', function() {
     it('should be equal when single css', function(done) {
-        Sprite({
+        sprite({
             src: 'test/fixtures/css/main.css',
             dest: 'test/tmp/single/css/dest.css',
             output: 'test/tmp/single/images',
@@ -31,7 +31,7 @@ describe('output css and image', function() {
     });
 
     it('should be equal when multiple css', function(done) {
-        Sprite({
+        sprite({
             src: ['test/fixtures/css/one.css', 'test/fixtures/css/two.css'],
             dest: 'test/tmp/multi',
             output: 'test/tmp/multi',
