@@ -173,12 +173,10 @@ var urlReg = /(?:url\(['"]?([\w\W]+?)(?:\?(__)?([\w\W]+?))?['"]?\))/,
 移动端设计稿导出原始大小图片即可，img-sprite 基于 @2x 的精灵图再产出 @1x 的精灵图，并在 css 文件底部自动插入 media
 
 ## 其他问题
-1. 没有 GM 以外的选择吗  
-    <s>尝试了 node Jimp，缩小图片效果不理想。暂时不支持在 img-sprite 中配置其他的位图引擎。折腾 GM 可以戳[这里](http://cupools.github.io/2015/09/29/notes/%E5%AE%89%E8%A3%85%20GraphicsMagick%E8%BF%99%E4%B8%AA%E5%A4%A7%E5%9D%91/)</s>
+1. 不依赖 GM 等图形处理库  
+    img-sprite 从 `v0.3.0` 开始使用 [images](https://github.com/zhangyuanwei/node-images) 替代了 spritesmith 默认的位图引擎，解决了 windows 平台下产出精灵图可能出现噪点的情况，缩短了产出图片的耗时。同时不再依赖 GM，再也不需要折腾啦！产出图片的质量也比较出色，感谢作者~
     
-    有！使用 [images](https://github.com/zhangyuanwei/node-images) 替代了 spritesmith 默认的位图引擎，解决了 windows 平台下产出精灵图可能出现噪点的情况，缩短了产出图片的耗时，同时抛弃了对 GM 的依赖，不再需要折腾啦！产出图片的质量也比较出色，感谢作者~
-    
-    此外尝试了 [phantomjs](http://phantomjs.org/) 作为位图引擎，但发现在 window 和 osx 下速度大幅慢于其他引擎，故不采用
+    此外尝试了 node Jimp，缩小图片效果不理想；尝试了 [phantomjs](http://phantomjs.org/) 作为位图引擎，但发现在 window 和 osx 下速度大幅慢于其他引擎，故不采用。暂时不支持在 img-sprite 中配置其他的位图引擎
 
 1. 对其他样式的影响  
     调整 AST 的过程中会将做这样的处理，删除 background 有关的样式并插入新的值。保留背景颜色，不支持同时定义多个背景图片
@@ -207,7 +205,7 @@ var urlReg = /(?:url\(['"]?([\w\W]+?)(?:\?(__)?([\w\W]+?))?['"]?\))/,
 
 ## 更新日志
 - 0.3.0：
-	- 使用 [images](https://github.com/zhangyuanwei/node-images) 替代了 spritesmith 默认的位图引擎，解决了 windows 平台下产出精灵图可能出现噪点的情况，同时抛弃了对 GM 的依赖
+	- 使用 [images](https://github.com/zhangyuanwei/node-images) 替代了 spritesmith 默认的位图引擎，解决了 windows 平台下产出精灵图可能出现噪点的情况，同时不再依赖 GM
 - 0.2.0：
 	- 支持通过`?__inline`内联图片
 	- 使用 [fs-extra](https://github.com/jprichardson/node-fs-extra) 操作文件，支持创建多层目录
