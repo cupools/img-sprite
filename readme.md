@@ -167,7 +167,7 @@ var urlReg = /(?:url\(['"]?([\w\W]+?)(?:\?(__)?([\w\W]+?))?['"]?\))/,
 通过 `icon.png?__inline` 标记即可
 
 #### 6. 使用要简单，简单，简单
-配置比较简单，需要目标 css 路径（src），产出 css 路径（dest），精灵图产出路径（output）三个参数。如果 src 有多个文件，那么 dest 指定路径并产出多个 css 文件；如果 src 只有一个文件，那么 dest 可以指定产出 css 的路径和文件名。依赖 GM 应该是最麻烦的地方吧，还好 windows 下的安装不麻烦。可以配合 CSS 预处理器更方便地写样式
+从 `v0.3.0` 开始使用 [images](https://github.com/zhangyuanwei/node-images)，不需要安装 GM 等图形处理库。配置比较简单，需要目标 css 路径（src），产出 css 路径（dest），精灵图产出路径（output）三个参数。如果 src 有多个文件，那么 dest 指定路径并产出多个 css 文件；如果 src 只有一个文件，那么 dest 可以指定产出 css 的路径和文件名。推荐配合 CSS 预处理器更方便地写样式
 
 #### 7. 设计稿每次导出 @2x 的图片即可，由工具产出 @1x 的图片
 移动端设计稿导出原始大小图片即可，img-sprite 基于 @2x 的精灵图再产出 @1x 的精灵图，并在 css 文件底部自动插入 media
