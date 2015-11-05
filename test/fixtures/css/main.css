@@ -12,7 +12,7 @@ div {
   width: 128px;
   height: 128px;
   color: #ccc;
-  background: url(../images/1.png?__tom) no-repeat;
+  background-image: url(../images/1.png?__tom) no-repeat;
   background-size: 128px 128px;
 }
 .icon1 {
