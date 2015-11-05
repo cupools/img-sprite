@@ -6,7 +6,15 @@ div {
 .icon0 {
   width: 128px;
   height: 128px;
-  background: url(../images/sprite-tom.png) 0px 0px no-repeat;
+  background: #ccc url(../images/sprite-tom.png) 0px 0px no-repeat;
+  background-size: 261px 261px;
+}
+
+.icon1 {
+  width: 128px;
+  height: 128px;
+  color: #ccc;
+  background: url(../images/sprite-tom.png) -133px 0px no-repeat;
   background-size: 261px 261px;
 }
 
@@ -61,9 +69,35 @@ div {
   background-size: 100px 100px;
 }
 
+.unexist {
+  width: 100px;
+  height: 100px;
+  background: url(../images/undefined.png?__jerry) no-repeat;
+  background-size: 100px 100px;
+}
+
+.unexist-inline {
+  width: 100px;
+  height: 100px;
+  background: url(../images/undefined.png?__inline) no-repeat;
+  background-size: 100px 100px;
+}
+
+.oversize {
+  width: 100px;
+  height: 100px;
+  background: url(../images/0.png?__inline) no-repeat;
+  background-size: 100px 100px;
+}
+
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5) {
   .icon0 {
-    background: url(../images/sprite-tom@2x.png) 0px 0px no-repeat;
+    background: #ccc url(../images/sprite-tom@2x.png) 0px 0px no-repeat;
+    background-size: 261px 261px;
+  }
+
+  .icon1 {
+    background: url(../images/sprite-tom@2x.png) -133px 0px no-repeat;
     background-size: 261px 261px;
   }
 

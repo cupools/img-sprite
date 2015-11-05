@@ -204,6 +204,10 @@ var urlReg = /(?:url\(['"]?([\w\W]+?)(?:\?(__)?([\w\W]+?))?['"]?\))/,
 	- 仅支持处理 .css。实际上推荐使用 SASS 等写样式，在产出 css 文件后交给 img-sprite 做进一步精灵图合并处理即可
 
 ## 更新日志
+- 0.3.2：
+	- 修复 `background-image` 抛出异常的情况
+	- 修复 `?__inline` 被插入到 media 中的情况
+	- 完善日志
 - 0.3.0：
 	- 使用 [images](https://github.com/zhangyuanwei/node-images) 替代了 spritesmith 默认的位图引擎，解决了 windows 平台下产出精灵图可能出现噪点的情况，同时不再依赖 GM
 - 0.2.0：

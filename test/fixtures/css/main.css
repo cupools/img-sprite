@@ -5,7 +5,14 @@ div {
 .icon0 {
   width: 128px;
   height: 128px;
-  background: url(../images/0.png?__tom) no-repeat;
+  background: #ccc url(../images/0.png?__tom) no-repeat;
+  background-size: 128px 128px;
+}
+.icon1 {
+  width: 128px;
+  height: 128px;
+  color: #ccc;
+  background: url(../images/1.png?__tom) no-repeat;
   background-size: 128px 128px;
 }
 .icon1 {
@@ -50,5 +57,23 @@ div {
   width: 100px;
   height: 100px;
   background: url(../images/7.png?__inline) no-repeat;
+  background-size: 100px 100px;
+}
+.unexist {
+  width: 100px;
+  height: 100px;
+  background: url(../images/undefined.png?__jerry) no-repeat;
+  background-size: 100px 100px;
+}
+.unexist-inline {
+  width: 100px;
+  height: 100px;
+  background: url(../images/undefined.png?__inline) no-repeat;
+  background-size: 100px 100px;
+}
+.oversize {
+  width: 100px;
+  height: 100px;
+  background: url(../images/0.png?__inline) no-repeat;
   background-size: 100px 100px;
 }

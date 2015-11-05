@@ -1,6 +1,6 @@
 {
   "name": "img-sprite",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "auto image sprite",
   "main": "index.js",
   "scripts": {
