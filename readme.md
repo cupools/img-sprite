@@ -1,12 +1,13 @@
 ## 需求
 针对之前页面重构的方式，我对于一个精灵图处理工具的设想是这样的：
 
-1. 像 FIS 一般，通过在 css 文件中背景图片添加标识合并精灵图。**跟平时一样写 css，仅在打包阶段产出精灵图和新的 css 文件**
+1. 像 FIS 一般，通过在 css 文件中背景图片添加标识合并精灵图。**跟平时一样写样式，仅在打包阶段产出精灵图和新的 css 文件**。不关心是否使用 SASS 等
 1. 能够根据标识产出多个精灵图
 1. 不依赖 Less 等 CSS 预处理器
 1. 兼容 Retina，并自动插入媒体查询代码
 1. Base64 内联图片，通过 `?__inline` 标识
-1. 使用要简单，简单，简单
+1. 使用要简单，简单，简单，**不依赖于 GM 等图像处理库**
+1. 设计稿每次导出 @2x 的图片即可，由工具产出 @1x 的图片
 
 <!-- more -->
 
@@ -168,9 +169,16 @@ var urlReg = /(?:url\(['"]?([\w\W]+?)(?:\?(__)?([\w\W]+?))?['"]?\))/,
 #### 6. 使用要简单，简单，简单
 配置比较简单，需要目标 css 路径（src），产出 css 路径（dest），精灵图产出路径（output）三个参数。如果 src 有多个文件，那么 dest 指定路径并产出多个 css 文件；如果 src 只有一个文件，那么 dest 可以指定产出 css 的路径和文件名。依赖 GM 应该是最麻烦的地方吧，还好 windows 下的安装不麻烦。可以配合 CSS 预处理器更方便地写样式
 
+#### 7. 设计稿每次导出 @2x 的图片即可，由工具产出 @1x 的图片
+移动端设计稿导出原始大小图片即可，img-sprite 基于 @2x 的精灵图再产出 @1x 的精灵图，并在 css 文件底部自动插入 media
+
 ## 其他问题
 1. 没有 GM 以外的选择吗  
-    尝试了 node Jimp，缩小图片效果不理想。暂时不支持在 img-sprite 中配置其他的位图引擎。折腾 GM 可以戳[这里](http://cupools.github.io/2015/09/29/notes/%E5%AE%89%E8%A3%85%20GraphicsMagick%E8%BF%99%E4%B8%AA%E5%A4%A7%E5%9D%91/)
+    <s>尝试了 node Jimp，缩小图片效果不理想。暂时不支持在 img-sprite 中配置其他的位图引擎。折腾 GM 可以戳[这里](http://cupools.github.io/2015/09/29/notes/%E5%AE%89%E8%A3%85%20GraphicsMagick%E8%BF%99%E4%B8%AA%E5%A4%A7%E5%9D%91/)</s>
+    
+    有！使用 [images](https://github.com/zhangyuanwei/node-images) 替代了 spritesmith 默认的位图引擎，解决了 windows 平台下产出精灵图可能出现噪点的情况，缩短了产出图片的耗时，同时抛弃了对 GM 的依赖，不再需要折腾啦！产出图片的质量也比较出色，感谢作者~
+    
+    此外尝试了 [phantomjs](http://phantomjs.org/) 作为位图引擎，但发现在 window 和 osx 下速度大幅慢于其他引擎，故不采用
 
 1. 对其他样式的影响  
     调整 AST 的过程中会将做这样的处理，删除 background 有关的样式并插入新的值。保留背景颜色，不支持同时定义多个背景图片
@@ -192,12 +200,14 @@ var urlReg = /(?:url\(['"]?([\w\W]+?)(?:\?(__)?([\w\W]+?))?['"]?\))/,
 
 1. 缺点  
 	- 目前仅支持处理 .png
-	- 写样式的时候建议元素的宽高和背景图的宽高一致，其他情况下精灵图不方便处理。有什么好的建议请务必提 [issue](https://github.com/cupools/img-sprite/issues)
+	- 写样式的时候建议元素的宽高和背景图的宽高一致，其他情况下精灵图不方便处理
 	- 不支持背景图 repeat
 	- 暂不支持多个背景图
-	- 目前仅支持处理 .css
+	- 仅支持处理 .css。实际上推荐使用 SASS 等写样式，在产出 css 文件后交给 img-sprite 做进一步精灵图合并处理即可
 
 ## 更新日志
+- 0.3.0：
+	- 使用 [images](https://github.com/zhangyuanwei/node-images) 替代了 spritesmith 默认的位图引擎，解决了 windows 平台下产出精灵图可能出现噪点的情况，同时抛弃了对 GM 的依赖
 - 0.2.0：
 	- 支持通过`?__inline`内联图片
 	- 使用 [fs-extra](https://github.com/jprichardson/node-fs-extra) 操作文件，支持创建多层目录

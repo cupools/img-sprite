@@ -43,3 +43,16 @@
     - remove：移除当前 node
 - 基本数据不做处理
 - 数组需要遍历，递归每个对象
+
+## 优化
+
+- 是否可以替换位图引擎，比如基于 phantomjs 的 canvas
+	- window 测试可行，需要 1.9.8
+	- 如何调整 phantomjssmith 兼容到 phantomjs
+	- 如何通过 phantomjs 缩小图片
+	- phantomjs 速度太慢，osx 下处理一个合并6个小图的时间是4700ms， gm 为 100ms，pixel 为 400ms；windows 下处理6个小图的时间为 1100ms，gm 为 80ms，pixel 为 400ms（pixel 在 windows 下大概率出现噪点）
+- 尝试 images 
+	- <s>坑爹的 node-images</s>
+	- 表现比较优秀，速度和质量，不依赖外部库
+- 产出 .icon 方式，可以是另外的分支（支持 sass 等）
+- 改用正则表达式？不用，不需要在意 sass
