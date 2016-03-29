@@ -161,7 +161,7 @@ var urlReg = /(?:url\(['"]?([\w\W]+?)(?:\?(__)?([\w\W]+?))?['"]?\))/,
 跟平时一样写代码，在完成之后一次构建处理即可。当然平时用预处理器更方便了
 
 #### 4. 兼容 Retina
-之前尝试过其他自动雪碧图工具，比较不舒服的一个地方是对 Retina 的兼容。img-sprite 对 Retina 的处理是产出两套精灵图，并在 css 文件底部插入 media。默认以 @2x 的切图合并精灵图，然后依赖 [GM](http://www.graphicsmagick.org/) 缩小图片产出 @1x 的精灵图。
+之前尝试过其他自动雪碧图工具，比较不舒服的一个地方是对 Retina 的兼容。img-sprite 对 Retina 的处理是产出两套精灵图，并在 css 文件底部插入 media。默认以 @2x 的切图合并精灵图，然后通过 [images](https://github.com/zhangyuanwei/node-images) 缩小图片产出 @1x 的精灵图。
 
 #### 5. Base64 内联图片
 通过 `icon.png?__inline` 标记即可
