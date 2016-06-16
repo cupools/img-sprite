@@ -1,3 +1,5 @@
+本项目已完全重构至 [Emilia](https://github.com/cupools/emilia)，`img-sprite` 将停止更新。
+
 ## 需求
 针对之前页面重构的方式，我对于一个精灵图处理工具的设想是这样的：
 
@@ -54,9 +56,9 @@ sprite({
 
 ```
 
-![css 文件](https://github.com/cupools/img-sprite/blob/master/docs/00.png)
+![css 文件](docs/00.png)
 
-![精灵图](https://github.com/cupools/img-sprite/blob/master/docs/01.png)
+![精灵图](docs/01.png)
 
 ### 处理多个 css 文件
 
